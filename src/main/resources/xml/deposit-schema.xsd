@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.example.com/deposits"
+        xmlns:tns="http://www.example.com/deposits"
+        elementFormDefault="qualified">
+    <element name="deposit"
+             type="tns:Deposit"/>
+    <element name="term-deposit"
+             type="tns:TermDeposit"
+             substitutionGroup="tns:deposit" />
+    <element name="deposits">
+        <complexType>
+            <sequence>
+               <element ref="tns:deposit" minOccurs="2" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <complexType name="Deposit">
+        <sequence>
+            <element name="bank-name" type="string"/>
+            <element name="amount" type="double"/>
+            <element name="profitability">
+                <simpleType>
+                    <restriction base="double">
+                        <minInclusive value="0" />
+                        <maxInclusive value="100" />
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="info" type="string"/>
+            <element name="currency">
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="BYN" />
+                        <enumeration value="USD" />
+                        <enumeration value="EUR" />
+                        <enumeration value="UAH" />
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+        <attribute name="country" default="Belarus"/>
+        <attribute name="account-id" use="required">
+            <simpleType>
+                <restriction base="ID">
+                    <pattern value="[A-Z]{2}\d{7}" />
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+    <complexType name="TermDeposit">
+        <complexContent>
+            <extension base="tns:Deposit">
+                <sequence>
+                    <element name="start-date" type="date" />
+                    <element name="end-date" type="date"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+</schema>

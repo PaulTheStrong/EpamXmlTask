@@ -1,0 +1,36 @@
+<deposits xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://www.example.com/deposits"
+            xsi:schemaLocation="http://www.example.com/deposits deposit-schema.xsd">
+    <deposit account-id="AD7654321">
+        <bank-name>BSB Bank</bank-name>
+        <amount>1000</amount>
+        <profitability>5</profitability>
+        <info>First deposit</info>
+        <currency>BYN</currency>
+    </deposit>
+    <deposit account-id="PM3221337" country="USA">
+        <bank-name>Cool American Bank</bank-name>
+        <amount>40000</amount>
+        <profitability>12.5</profitability>
+        <info />
+        <currency>USD</currency>
+    </deposit>
+    <term-deposit account-id="AB2312133" country="USA"> <!-- Incorrect ID Проверить, как будет парситься -->
+        <bank-name>Less American Bank</bank-name>
+        <amount>10000</amount>
+        <profitability>5.3</profitability>
+        <info>The profitability less than in Cool American Bank</info>
+        <currency>EUR</currency>
+        <start-date>2021-06-12</start-date>
+        <end-date>2021-09-12</end-date>
+    </term-deposit>
+    <term-deposit account-id="MT3211233">
+        <bank-name>Dungeon bank</bank-name>
+        <amount>300</amount>
+        <profitability>100</profitability>
+        <info>Three hundred bucks bank deposit</info>
+        <currency>USD</currency>
+        <start-date>2001-01-01</start-date>
+        <end-date>2021-01-01</end-date>
+    </term-deposit>
+</deposits>
